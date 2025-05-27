@@ -4,6 +4,7 @@ import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliveryOptions, getDeliveryOption} from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
+// When we import a function, we can also use 'as' to change its name.
 
 export function renderOrderSummary(){
 
@@ -120,16 +121,19 @@ export function renderOrderSummary(){
 
     // Adicionar eventos de deleção e atualização de quantidade
     document.querySelectorAll('.js-delete-link').forEach((link) => {
+
         link.addEventListener('click', () => {
             const productId = link.dataset.productId;
             removeFromCart(productId);
 
-            const container = document.querySelector(`.js-cart-item-container-${productId}`);
-            container.remove();
-            renderPaymentSummary();
+                renderOrderSummary();
+                renderPaymentSummary();
+
             // Recalcular e atualizar a quantidade total de itens no carrinho
             const updatedCartQuantity = calculateCartQuantity();
             document.querySelector('.js-quantity-items').innerHTML = `${updatedCartQuantity} item${updatedCartQuantity !== 1 ? 's' : ''}`;
+            
+            
         });
     });
 
@@ -161,10 +165,14 @@ export function renderOrderSummary(){
 
                 // Remover a classe de edição
                 container.classList.remove('is-editing-quantity');
+                
+                renderPaymentSummary();
             } else {
                 alert('Insira um valor entre 0 e 999');
             }
         });
+
+                
     });
 
     document.querySelectorAll('.js-quantity-input').forEach((input) => {
