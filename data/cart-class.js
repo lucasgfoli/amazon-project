@@ -3,17 +3,17 @@
 
 //Object generator
 class Cart {
-    cartItems; //Property of the class
-    localStorageKey = undefined; //Same
+    cartItems; //Property of the class / Public
+    #localStorageKey = undefined; // This # make the porpertie private. Only be use in this class
 
     constructor(localStorageKey) {
-        this.localStorageKey = localStorageKey;
-        this.loadFromStorage();
+        this.#localStorageKey = localStorageKey;
+        this.#loadFromStorage();
     }
 
-    loadFromStorage() {
+    #loadFromStorage() {
         //This = Use the porpeties of this object inside of hiSm
-        this.cartItems = JSON.parse(localStorage.getItem(this.localtorageKey));
+        this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
 
         if (!this.cartItems) {
             this.cartItems = [{
@@ -29,7 +29,7 @@ class Cart {
     }
 
     saveToStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
     addToCart(productId) {
@@ -71,7 +71,7 @@ class Cart {
     updateDeliveryOption(productId, deliveryOptionId) {
         let matchingItem;
 
-        this.cartItemst.forEach((cartItem) => {
+        this.cartItems.forEach((cartItem) => {
             if (productId === cartItem.productId) {
                 matchingItem = cartItem;
             }
@@ -89,10 +89,6 @@ class Cart {
 const cart = new Cart('cart-oop'); //Object generator or Instance of the class
 const businessCart = new Cart('cart-business'); // This values inside of the brackets its the parameters of the constructor
 
-
-
 console.log(cart);
 console.log(businessCart);
-
-
 console.log(businessCart instanceof Cart);
