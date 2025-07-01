@@ -1,5 +1,6 @@
 // OBJECT-ORIENTED PROGRAMING (OOP)
 // ORGANIZE THE CODE INTO OBJECTS
+
 function Cart(localStorageKey) {
     const cart = {
         cartItems: undefined,
