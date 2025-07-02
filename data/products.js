@@ -35,59 +35,33 @@ class Product {
     return `$${formatCurrency(this.priceCents)}`;
   }
 
-  extraInfoHTML() {
+  extraInfoHTML(){
     return '';
   }
+
 }
 
-class Clothing extends Product {
-  sizeChartLink;
+//Extends get all properties and methods -> Is as more especific type
+class Clothing extends Product{
+  sizeChartLink
 
-  constructor(productDetails) {
-    super(productDetails);
+  constructor( productDetails ){
+    super(productDetails); //Super call the constructor of the parent class
     this.sizeChartLink = productDetails.sizeChartLink;
   }
 
-  extraInfoHTML() {
-    // super.extraInfoHTML();
+  extraInfoHTML(){
+    //super.extraInfoHTML();
     return `
       <a href="${this.sizeChartLink}" target="_blank">
-        Size chart
-      </a>
+      Size Chart
+      </a> 
     `;
   }
+  
+  // Target: Attribute in HTML is used to open a linked document in a new window or tab.
+
 }
-
-/*
-const date = new Date();
-console.log(date);
-console.log(date.toLocaleTimeString());
-*/
-
-/*
-console.log(this);
-
-const object2 = {
-  a: 2,
-  b: this.a
-};
-*/
-
-/*
-function logThis() {
-  console.log(this);
-}
-logThis();
-logThis.call('hello');
-
-this
-const object3 = {
-  method: () => {
-    console.log(this);
-  }
-};
-object3.method();
-*/
 
 export const products = [
   {
@@ -133,7 +107,7 @@ export const products = [
       "apparel",
       "mens"
     ],
-    type: "clothing",
+    type: "clothing", //Discriminator Property
     sizeChartLink: "images/clothing-size-chart.png"
   },
   {
@@ -749,8 +723,8 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
-  if (productDetails.type === 'clothing') {
+  if(productDetails.type === 'clothing')
     return new Clothing(productDetails);
-  }
+
   return new Product(productDetails);
 });
