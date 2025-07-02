@@ -63,6 +63,37 @@ class Clothing extends Product{
 
 }
 
+// Built In Class
+
+/*
+const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString());
+
+
+console.log(this);
+
+const object2 = {
+  a: 2,
+  b: this.a
+}
+
+function logThis(){
+  console.log(this); 
+}
+
+logThis();
+logThis.call('hello'); -> Inside a function we can change this to whatever we want. Extra parameter
+
+const object3 = {
+  method: () = {
+    console.log(this); -> Arrow function do not change the value of this
+  }
+}
+
+object3.method();
+*/
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
